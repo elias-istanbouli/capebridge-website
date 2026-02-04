@@ -30,7 +30,7 @@ const guides: Guide[] = [
 
 export function Resources() {
   return (
-    <SectionWrapper id="resources" className="bg-muted">
+    <SectionWrapper id="resources">
       <div className="mx-auto max-w-2xl text-center">
         <h2 className="text-3xl font-bold text-foreground md:text-4xl">
           Resources Hub

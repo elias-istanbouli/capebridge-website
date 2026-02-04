@@ -4,7 +4,7 @@ import { DataVizBackground } from "@/components/ui/DataVizBackground";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-24 md:py-32 lg:py-40">
+    <section id="hero" className="relative overflow-hidden py-24 md:py-32 lg:py-40">
       {/* Animated data-viz background */}
       <DataVizBackground />
 
@@ -33,7 +33,7 @@ export function Hero() {
             <Button
               size="lg"
               onClick={() => {
-                window.location.href = "#contact";
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
               className="gap-2 px-8"
             >
@@ -44,7 +44,7 @@ export function Hero() {
               variant="outline"
               size="lg"
               onClick={() => {
-                window.location.href = "#services";
+                document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
               }}
               className="px-8"
             >

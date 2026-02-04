@@ -56,7 +56,7 @@ export function Header() {
           <div className="ml-4">
             <Button
               onClick={() => {
-                window.location.href = "#contact";
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Get in Touch
@@ -103,7 +103,7 @@ export function Header() {
               className="w-full"
               onClick={() => {
                 setMobileMenuOpen(false);
-                window.location.href = "#contact";
+                document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
             >
               Get in Touch
