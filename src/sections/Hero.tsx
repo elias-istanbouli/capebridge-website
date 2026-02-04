@@ -1,37 +1,69 @@
 import { ArrowRight } from "lucide-react";
+import { Button } from "@/components/ui";
+import { DataVizBackground } from "@/components/ui/DataVizBackground";
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden py-20 md:py-32">
-      {/* Background gradient */}
-      <div className="absolute inset-0 -z-10 bg-gradient-to-br from-primary/5 via-transparent to-accent/5" />
+    <section className="relative overflow-hidden py-24 md:py-32 lg:py-40">
+      {/* Animated data-viz background */}
+      <DataVizBackground />
 
-      <div className="container">
-        <div className="mx-auto max-w-3xl text-center">
-          <h1 className="text-4xl tracking-tight text-foreground md:text-5xl lg:text-6xl">
-            Data, Tech & AI
-            <span className="block text-primary">Consultancy</span>
-          </h1>
-
-          <p className="mt-6 text-lg text-muted-foreground md:text-xl">
-            We help businesses harness the power of data and artificial
-            intelligence to drive growth, efficiency, and innovation.
+      <div className="container relative">
+        <div className="mx-auto max-w-4xl text-center">
+          {/* Eyebrow text */}
+          <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
+            Data, Tech & AI Consultancy
           </p>
 
+          {/* Main headline */}
+          <h1 className="text-4xl tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+            Transform Your Business{" "}
+            <span className="text-primary">with Data & AI</span>
+          </h1>
+
+          {/* Subheading */}
+          <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground md:text-xl">
+            We partner with forward-thinking organisations to unlock the power
+            of their data. From strategy to implementation, we deliver solutions
+            that drive real business outcomes.
+          </p>
+
+          {/* CTA buttons */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <a
-              href="#contact"
-              className="inline-flex items-center gap-2 rounded-lg bg-accent px-6 py-3 font-semibold text-accent-foreground transition-colors hover:bg-accent/90"
+            <Button
+              size="lg"
+              onClick={() => {
+                window.location.href = "#contact";
+              }}
+              className="gap-2 px-8"
             >
-              Get Started
+              Get in Touch
               <ArrowRight className="h-4 w-4" />
-            </a>
-            <a
-              href="#services"
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-card px-6 py-3 font-semibold text-foreground transition-colors hover:bg-secondary"
+            </Button>
+            <Button
+              variant="outline"
+              size="lg"
+              onClick={() => {
+                window.location.href = "#services";
+              }}
+              className="px-8"
             >
-              Our Services
-            </a>
+              Explore Services
+            </Button>
+          </div>
+
+          {/* Trust indicators */}
+          <div className="mt-16 flex flex-col items-center gap-4">
+            <p className="text-sm text-muted-foreground">
+              Trusted by organisations across Australia
+            </p>
+            <div className="flex items-center gap-8 opacity-60">
+              {/* Placeholder for client logos - these would be replaced with actual logos */}
+              <div className="h-8 w-24 rounded bg-muted" />
+              <div className="hidden h-8 w-24 rounded bg-muted sm:block" />
+              <div className="hidden h-8 w-24 rounded bg-muted md:block" />
+              <div className="hidden h-8 w-24 rounded bg-muted lg:block" />
+            </div>
           </div>
         </div>
       </div>
