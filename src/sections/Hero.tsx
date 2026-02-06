@@ -1,24 +1,26 @@
 import { ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui";
-import { DataVizBackground } from "@/components/ui/DataVizBackground";
+import { BlueprintBackground, HeroAnimation } from "@/components/ui";
 
 export function Hero() {
   return (
     <section id="hero" className="relative overflow-hidden py-24 md:py-32 lg:py-40">
-      {/* Animated data-viz background */}
-      <DataVizBackground />
+      {/* Blueprint grid background */}
+      <BlueprintBackground />
 
-      <div className="container relative">
+      {/* Hero animation — wave/bridge stroke draw */}
+      <HeroAnimation />
+
+      <div className="container relative z-20">
         <div className="mx-auto max-w-4xl text-center">
-          {/* Eyebrow text */}
-          <p className="mb-4 text-sm font-semibold uppercase tracking-wider text-primary">
-            Data, Tech & AI Consultancy
+          {/* Tagline as eyebrow */}
+          <p className="mb-4 text-xs font-medium tracking-[0.05em] text-navy">
+            Your path, properly built
           </p>
 
           {/* Main headline */}
-          <h1 className="text-4xl tracking-tight text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
+          <h1 className="text-4xl font-bold tracking-[-0.02em] text-foreground sm:text-5xl md:text-6xl lg:text-7xl">
             Transform Your Business{" "}
-            <span className="text-primary">with Data & AI</span>
+            <span className="text-teal">with Data & AI</span>
           </h1>
 
           {/* Subheading */}
@@ -30,40 +32,23 @@ export function Hero() {
 
           {/* CTA buttons */}
           <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <Button
-              size="lg"
+            <button
+              className="inline-flex w-full cursor-pointer items-center justify-center gap-2 rounded-sm bg-navy px-6 py-3 text-sm font-medium tracking-[0.02em] text-white transition-colors hover:bg-navy/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 sm:w-auto"
               onClick={() => {
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="gap-2 px-8"
             >
               Get in Touch
               <ArrowRight className="h-4 w-4" />
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
+            </button>
+            <button
+              className="btn-secondary w-full sm:w-auto"
               onClick={() => {
                 document.getElementById("services")?.scrollIntoView({ behavior: "smooth" });
               }}
-              className="px-8"
             >
               Explore Services
-            </Button>
-          </div>
-
-          {/* Trust indicators */}
-          <div className="mt-16 flex flex-col items-center gap-4">
-            <p className="text-sm text-muted-foreground">
-              Trusted by organisations across Australia
-            </p>
-            <div className="flex items-center gap-8 opacity-60">
-              {/* Placeholder for client logos - these would be replaced with actual logos */}
-              <div className="h-8 w-24 rounded bg-muted" />
-              <div className="hidden h-8 w-24 rounded bg-muted sm:block" />
-              <div className="hidden h-8 w-24 rounded bg-muted md:block" />
-              <div className="hidden h-8 w-24 rounded bg-muted lg:block" />
-            </div>
+            </button>
           </div>
         </div>
       </div>

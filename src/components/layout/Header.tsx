@@ -1,7 +1,7 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui";
+import { Button, Logo } from "@/components/ui";
 
 const navLinks = [
   { href: "#services", label: "Services" },
@@ -33,13 +33,12 @@ export function Header() {
       )}
     >
       <div className="container flex h-16 items-center justify-between">
-        {/* Logo / Wordmark */}
+        {/* Logo */}
         <a
           href="/"
-          className="flex items-center gap-1 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+          className="focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
         >
-          <span className="text-xl font-extrabold text-foreground">Cape</span>
-          <span className="text-xl font-medium text-primary">Bridge</span>
+          <Logo size={scrolled ? 32 : 36} />
         </a>
 
         {/* Desktop Navigation */}
@@ -48,13 +47,15 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
+              className="nav-link relative px-4 py-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 rounded-md"
             >
               {link.label}
             </a>
           ))}
           <div className="ml-4">
             <Button
+              size="lg"
+              className="bg-navy text-white hover:bg-navy/90 px-6"
               onClick={() => {
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
               }}
@@ -67,7 +68,7 @@ export function Header() {
         {/* Mobile Menu Button */}
         <button
           type="button"
-          className="inline-flex items-center justify-center p-2 rounded-md md:hidden text-foreground hover:bg-muted transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
+          className="inline-flex items-center justify-center p-2 rounded-md md:hidden text-foreground hover:text-cta transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 cursor-pointer"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-expanded={mobileMenuOpen}
           aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
@@ -83,7 +84,7 @@ export function Header() {
       {/* Mobile Navigation */}
       <div
         className={cn(
-          "md:hidden overflow-hidden transition-all duration-300 ease-in-out",
+          "md:hidden overflow-hidden transition-all duration-300 ease-out",
           mobileMenuOpen ? "max-h-80 opacity-100" : "max-h-0 opacity-0"
         )}
       >
@@ -92,7 +93,7 @@ export function Header() {
             <a
               key={link.href}
               href={link.href}
-              className="px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground hover:bg-muted rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+              className="nav-link relative px-4 py-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               onClick={() => setMobileMenuOpen(false)}
             >
               {link.label}
@@ -100,7 +101,8 @@ export function Header() {
           ))}
           <div className="mt-2 px-4">
             <Button
-              className="w-full"
+              size="lg"
+              className="bg-navy text-white hover:bg-navy/90 w-full"
               onClick={() => {
                 setMobileMenuOpen(false);
                 document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });

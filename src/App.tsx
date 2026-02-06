@@ -1,5 +1,6 @@
 import { Header } from "./components/layout/Header";
 import { Footer } from "./components/layout/Footer";
+import { SectionDivider } from "./components/ui";
 import { Hero } from "./sections/Hero";
 import { Services } from "./sections/Services";
 import { About } from "./sections/About";
@@ -12,9 +13,13 @@ export function App() {
       <Header />
       <main className="flex-1">
         <Hero />
+        <SectionDivider />
         <Services />
+        <SectionDivider />
         <About />
+        <SectionDivider />
         <Resources />
+        <SectionDivider />
         <Contact />
       </main>
       <Footer />

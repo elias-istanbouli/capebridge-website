@@ -1,5 +1,5 @@
-import { Wrench, Target, GraduationCap, Cloud, MapPin } from "lucide-react";
-import { SectionWrapper, Card, Button } from "@/components/ui";
+import { Wrench, Target, GraduationCap } from "lucide-react";
+import { SectionWrapper, SpecSheet } from "@/components/ui";
 
 const differentiators = [
   {
@@ -22,11 +22,11 @@ const differentiators = [
   },
 ];
 
-const stats = [
-  { value: "10+", label: "Years Experience" },
-  { value: "50+", label: "Projects Delivered" },
-  { value: "Multi-Cloud", label: "AWS, Azure, GCP", icon: Cloud },
-  { value: "AU Based", label: "Local Timezone", icon: MapPin },
+const specData = [
+  { label: "Experience", value: "10+ Years" },
+  { label: "Projects Delivered", value: "50+" },
+  { label: "Cloud Platforms", value: "AWS, Azure, GCP" },
+  { label: "Location", value: "Australia" },
 ];
 
 export function About() {
@@ -35,42 +35,45 @@ export function About() {
       <div className="grid items-start gap-12 lg:grid-cols-2 lg:gap-16">
         {/* Left Column - Content */}
         <div>
-          <h2 className="text-3xl font-bold text-foreground md:text-4xl">
+          <h2 className="text-3xl font-bold tracking-[-0.01em] text-foreground md:text-4xl">
             Why Cape Bridge
           </h2>
           <p className="mt-6 text-lg text-muted-foreground">
-            We're an Australian data and AI consultancy with experience spanning
-            startups to enterprises. Our focus is simple: deliver practical
-            solutions that create real business value — no unnecessary complexity,
-            no buzzword bingo.
+            <span className="font-medium text-navy">
+              Your path, properly built
+            </span>{" "}
+            — that's our philosophy. We're an Australian data and AI consultancy
+            with experience spanning startups to enterprises. Our focus is
+            simple: deliver practical solutions that create real business value
+            — no unnecessary complexity, no buzzword bingo.
           </p>
 
-          {/* Differentiator Cards */}
+          {/* Differentiator Cards - left border only, inline icons */}
           <div className="mt-10 space-y-4">
             {differentiators.map((item) => (
-              <Card key={item.title} className="p-5">
-                <div className="flex gap-4">
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <item.icon className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground">
-                      {item.title}
-                    </h3>
-                    <p className="mt-1 text-sm text-muted-foreground">
-                      {item.description}
-                    </p>
-                  </div>
+              <div
+                key={item.title}
+                className="border-l-2 border-navy bg-transparent py-3 pl-4"
+              >
+                <div className="flex items-center gap-2">
+                  <item.icon
+                    className="h-5 w-5 text-navy"
+                    strokeWidth={1.5}
+                    aria-hidden="true"
+                  />
+                  <h3 className="font-semibold text-foreground">{item.title}</h3>
                 </div>
-              </Card>
+                <p className="mt-1 text-sm text-muted-foreground">
+                  {item.description}
+                </p>
+              </div>
             ))}
           </div>
 
-          {/* Secondary CTA */}
+          {/* CTA - navy style */}
           <div className="mt-10">
-            <Button
-              variant="outline"
-              size="lg"
+            <button
+              className="inline-flex cursor-pointer items-center justify-center rounded-sm bg-navy px-6 py-3 text-sm font-medium tracking-[0.02em] text-white transition-colors hover:bg-navy/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
               onClick={() => {
                 document
                   .getElementById("contact")
@@ -78,28 +81,13 @@ export function About() {
               }}
             >
               Let's Talk
-            </Button>
+            </button>
           </div>
         </div>
 
-        {/* Right Column - Stats Grid */}
-        <div className="grid grid-cols-2 gap-4">
-          {stats.map((stat) => (
-            <div
-              key={stat.label}
-              className="flex flex-col items-center justify-center rounded-xl border bg-card p-6 text-center shadow-sm"
-            >
-              {stat.icon && (
-                <stat.icon className="mb-2 h-6 w-6 text-primary" />
-              )}
-              <span className="text-2xl font-bold text-foreground md:text-3xl">
-                {stat.value}
-              </span>
-              <span className="mt-1 text-sm text-muted-foreground">
-                {stat.label}
-              </span>
-            </div>
-          ))}
+        {/* Right Column - SpecSheet */}
+        <div>
+          <SpecSheet stats={specData} />
         </div>
       </div>
     </SectionWrapper>

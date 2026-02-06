@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { Mail, MapPin, Send, CheckCircle } from "lucide-react";
-import { Button } from "@/components/ui";
+import { Mail, MapPin, CheckCircle } from "lucide-react";
+import { Logo } from "@/components/ui";
 import { cn } from "@/lib/utils";
 
 interface FormData {
@@ -22,6 +22,33 @@ const initialFormData: FormData = {
   company: "",
   message: "",
 };
+
+function BlueprintGrid() {
+  return (
+    <svg
+      className="pointer-events-none absolute inset-0 h-full w-full"
+      aria-hidden="true"
+    >
+      <defs>
+        <pattern
+          id="contact-grid"
+          width="40"
+          height="40"
+          patternUnits="userSpaceOnUse"
+        >
+          <path
+            d="M 40 0 L 0 0 0 40"
+            fill="none"
+            stroke="white"
+            strokeWidth="0.5"
+            opacity="0.05"
+          />
+        </pattern>
+      </defs>
+      <rect width="100%" height="100%" fill="url(#contact-grid)" />
+    </svg>
+  );
+}
 
 export function Contact() {
   const [formData, setFormData] = useState<FormData>(initialFormData);
@@ -92,20 +119,27 @@ export function Contact() {
   };
 
   const inputBaseStyles =
-    "w-full rounded-lg border bg-white/10 px-4 py-3 text-primary-foreground placeholder:text-primary-foreground/50 transition-colors focus:outline-none focus:ring-2 focus:ring-white/50 focus:border-white/50";
+    "w-full rounded-none border bg-white/5 px-4 py-3 text-white placeholder:text-white/40 transition-colors focus:outline-none focus:border-white focus:ring-1 focus:ring-white/30";
   const inputErrorStyles = "border-red-400";
   const inputNormalStyles = "border-white/20";
 
   // Success state
   if (isSubmitted) {
     return (
-      <section id="contact" className="bg-primary py-20 md:py-28">
-        <div className="container">
+      <section id="contact" className="relative bg-primary py-20 md:py-28">
+        <BlueprintGrid />
+        <div className="container relative">
           <div className="mx-auto max-w-2xl text-center">
-            <div className="mb-6 flex justify-center">
-              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/20">
-                <CheckCircle className="h-8 w-8 text-primary-foreground" />
+            <div className="mb-6">
+              <div className="flex justify-center">
+                <Logo variant="white" size={28} />
               </div>
+              <p className="mt-2 text-sm tracking-[0.03em] text-white/70">
+                Your path, properly built
+              </p>
+            </div>
+            <div className="mb-6 flex justify-center">
+              <CheckCircle className="h-12 w-12 text-white/80" strokeWidth={1.5} />
             </div>
             <h2 className="text-3xl text-primary-foreground md:text-4xl">
               Message Sent!
@@ -114,13 +148,12 @@ export function Contact() {
               Thank you for reaching out. We'll get back to you as soon as
               possible.
             </p>
-            <Button
-              variant="outline"
-              className="mt-8 border-white/30 bg-transparent text-primary-foreground hover:bg-white/10"
+            <button
+              className="mt-8 inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-sm font-medium tracking-[0.02em] text-navy transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2"
               onClick={handleReset}
             >
               Send Another Message
-            </Button>
+            </button>
           </div>
         </div>
       </section>
@@ -128,8 +161,17 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="bg-primary py-20 md:py-28">
-      <div className="container">
+    <section id="contact" className="relative bg-primary py-20 md:py-28">
+      <BlueprintGrid />
+      <div className="container relative">
+        {/* Logo + Tagline */}
+        <div className="mb-10">
+          <Logo variant="white" size={28} />
+          <p className="mt-2 text-sm tracking-[0.03em] text-white/70">
+            Your path, properly built
+          </p>
+        </div>
+
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16">
           {/* Form Column */}
           <div>
@@ -145,7 +187,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="name"
-                  className="mb-2 block text-sm font-medium text-primary-foreground"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.05em] text-white/70"
                 >
                   Name <span className="text-red-300">*</span>
                 </label>
@@ -171,7 +213,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="email"
-                  className="mb-2 block text-sm font-medium text-primary-foreground"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.05em] text-white/70"
                 >
                   Email <span className="text-red-300">*</span>
                 </label>
@@ -197,10 +239,12 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="company"
-                  className="mb-2 block text-sm font-medium text-primary-foreground"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.05em] text-white/70"
                 >
                   Company{" "}
-                  <span className="text-primary-foreground/50">(optional)</span>
+                  <span className="normal-case tracking-normal text-white/40">
+                    (optional)
+                  </span>
                 </label>
                 <input
                   type="text"
@@ -218,7 +262,7 @@ export function Contact() {
               <div>
                 <label
                   htmlFor="message"
-                  className="mb-2 block text-sm font-medium text-primary-foreground"
+                  className="mb-2 block text-xs font-medium uppercase tracking-[0.05em] text-white/70"
                 >
                   Message <span className="text-red-300">*</span>
                 </label>
@@ -237,26 +281,23 @@ export function Contact() {
                   disabled={isSubmitting}
                 />
                 {errors.message && (
-                  <p className="mt-1.5 text-sm text-red-300">{errors.message}</p>
+                  <p className="mt-1.5 text-sm text-red-300">
+                    {errors.message}
+                  </p>
                 )}
               </div>
 
               {/* Submit Button */}
-              <Button
+              <button
                 type="submit"
-                size="lg"
-                className="w-full bg-white text-primary hover:bg-white/90 sm:w-auto"
+                className={cn(
+                  "inline-flex cursor-pointer items-center justify-center gap-2 rounded-sm bg-white px-6 py-3 text-sm font-medium tracking-[0.02em] text-navy transition-colors hover:bg-white/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 w-full sm:w-auto",
+                  isSubmitting && "pointer-events-none opacity-50"
+                )}
                 disabled={isSubmitting}
               >
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
+                {isSubmitting ? "Sending..." : "Send Message →"}
+              </button>
             </form>
           </div>
 
@@ -270,26 +311,28 @@ export function Contact() {
               hear from you. Reach out directly or use the form.
             </p>
 
-            <div className="mt-8 space-y-6">
+            <div className="mt-8 space-y-0">
               <a
                 href="mailto:hello@capebridge.com.au"
-                className="flex items-center gap-4 text-primary-foreground transition-colors hover:text-white"
+                className="flex items-center gap-3 py-4 text-primary-foreground transition-colors hover:text-white"
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/10">
-                  <Mail className="h-5 w-5" />
-                </div>
+                <Mail className="h-5 w-5 shrink-0 text-white/70" strokeWidth={1.5} />
                 <div>
-                  <p className="text-sm text-primary-foreground/60">Email</p>
+                  <p className="text-xs uppercase tracking-[0.05em] text-white/50">
+                    Email
+                  </p>
                   <p className="font-medium">hello@capebridge.com.au</p>
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 text-primary-foreground">
-                <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-white/10">
-                  <MapPin className="h-5 w-5" />
-                </div>
+              <div className="h-px bg-white/10" />
+
+              <div className="flex items-center gap-3 py-4 text-primary-foreground">
+                <MapPin className="h-5 w-5 shrink-0 text-white/70" strokeWidth={1.5} />
                 <div>
-                  <p className="text-sm text-primary-foreground/60">Location</p>
+                  <p className="text-xs uppercase tracking-[0.05em] text-white/50">
+                    Location
+                  </p>
                   <p className="font-medium">Based in Australia</p>
                 </div>
               </div>
